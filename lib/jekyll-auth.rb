@@ -1,13 +1,20 @@
-require 'rubygems'
-require 'sinatra-index'
+# frozen_string_literal: true
+
+require "sinatra-index"
 require 'sinatra-google-auth'
-require 'rack'
-require 'dotenv'
-require 'safe_yaml'
-require File.dirname(__FILE__) + '/jekyll-auth/version'
-require File.dirname(__FILE__) + '/jekyll-auth/config'
-require File.dirname(__FILE__) + '/jekyll-auth/auth-site'
-require File.dirname(__FILE__) + '/jekyll-auth/jekyll-site'
+require "dotenv"
+require "safe_yaml"
+require "colorator"
+require "mkmf"
+require_relative "jekyll_auth/version"
+require_relative "jekyll_auth/helpers"
+require_relative "jekyll_auth/config"
+require_relative "jekyll_auth/auth_site"
+require_relative "jekyll_auth/jekyll_site"
+require_relative "jekyll_auth/config_error"
+require_relative "jekyll_auth/commands"
+require_relative "jekyll_auth/sinatra/auth/github"
+
 Dotenv.load
 
 class JekyllAuth

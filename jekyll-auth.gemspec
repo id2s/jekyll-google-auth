@@ -1,27 +1,36 @@
-require './lib/jekyll-auth/version'
+# frozen_string_literal: true
+
+require "./lib/jekyll_auth/version"
 
 Gem::Specification.new do |s|
-
   s.name                  = "jekyll-auth"
   s.version               = JekyllAuth::VERSION
   s.summary               = "A simple way to use Google OAuth to serve a protected jekyll site"
   s.description           = "A simple way to use Google OAuth to serve a protected jekyll site."
-  s.authors               = "Alistair Jones"
-  s.email                 = "alistair.jones@neotechnology.com"
-  s.homepage              = "https://github.com/apcj/jekyll-auth"
+  s.authors               = "DigitalHub"
+  s.email                 = "digitalhub@insidegroup.fr"
+  s.homepage              = "https://github.com/id2s/jekyll-google-auth"
   s.license               = "MIT"
-  s.files                 = ["lib/jekyll-auth.rb", "bin/jekyll-auth", "config.ru", "Rakefile",
-                             "lib/jekyll-auth/auth-site.rb", "lib/jekyll-auth/jekyll-site.rb",
-                             "lib/jekyll-auth/version.rb", "lib/jekyll-auth/config.rb", ".gitignore"]
-  s.executables           = ["jekyll-auth"]
+  s.files                 = `git ls-files`.split("\n")
+  s.test_files            = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.executables           = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
+  s.require_paths         = ["lib"]
 
-  s.add_dependency("jekyll", "~> 2.0")
+  s.add_dependency "activesupport", "~> 4.0"
+  s.add_dependency "colorator", "~> 1.0"
+  s.add_dependency "dotenv", "~> 2.0"
+  s.add_dependency "jekyll", "~> 3.0"
   s.add_dependency("sinatra-index", "~> 0.0")
-  s.add_dependency("commander", "~> 4.1")
-  s.add_dependency("git", "~> 1.2")
-  s.add_dependency("dotenv", "~> 0.11")
-  s.add_dependency("rake", "~> 10.3")
-  s.add_dependency("rack-ssl-enforcer", "~> 0.2")
+  s.add_dependency "mercenary", "~> 0.3"
+  s.add_dependency "rack", "~> 1.6"
+  s.add_dependency "rack-protection", "~> 1.5", ">= 1.5.5"
+  s.add_dependency "rack-ssl-enforcer", "~> 0.2"
   s.add_dependency("mail", "~> 2.6.3")
-  s.add_runtime_dependency('safe_yaml', "~> 1.0")
+  s.add_dependency "rake", "~> 10.3"
+  s.add_dependency "safe_yaml", "~> 1.0"
+  s.add_development_dependency "pry", "~> 0.10"
+  s.add_development_dependency "rack-test", "~> 0.6"
+  s.add_development_dependency "rspec", "~> 3.1"
+  s.add_development_dependency "rubocop", "~> 0.49", ">= 0.49.0"
+  s.add_development_dependency "webmock", "~> 1.2 "
 end
